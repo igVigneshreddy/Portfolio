@@ -402,7 +402,77 @@
     color: var(--muted);
   }
 
-  /* REVEAL ANIMATION */
+  /* HERO SIDE CARDS */
+  .hero-side {
+    position: absolute;
+    right: 6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 260px;
+    animation: fadeUp 0.8s 1.3s both;
+  }
+  .hero-card {
+    background: rgba(17,24,39,0.85);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .hero-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+  .hero-card:hover::before { opacity: 1; }
+  .hero-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .hero-card ul {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .hero-card ul li {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .hero-card ul li:last-child { border-bottom: none; }
+  .hero-card ul li .li-icon { font-size: 1rem; flex-shrink: 0; }
+  .hero-card ul li span.li-label { color: var(--muted); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
+
+  .status-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 6px var(--green); }
+    50% { box-shadow: 0 0 14px var(--green); }
+  }
+
+  @media (max-width: 1100px) { .hero-side { display: none; } }
+
+  /* HERO SIDE CARDS */
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -494,6 +564,43 @@
     <div class="scroll-line"></div>
     scroll
   </div>
+
+  <!-- HERO SIDE CARDS -->
+  <div class="hero-side">
+
+    <!-- Status -->
+    <div class="hero-card">
+      <h4><span class="status-dot"></span> Current Status</h4>
+      <ul>
+        <li><span class="li-icon">🎓</span><div><div>B.Tech CSE</div><span class="li-label">Lovely Professional University</span></div></li>
+        <li><span class="li-icon">📍</span><div><div>Punjab, India</div><span class="li-label">Location</span></div></li>
+        <li><span class="li-icon">💼</span><div><div>Open to Work</div><span class="li-label">Internships & Projects</span></div></li>
+      </ul>
+    </div>
+
+    <!-- Top Skills -->
+    <div class="hero-card">
+      <h4>⚡ Top Skills</h4>
+      <ul>
+        <li><span class="li-icon">🐍</span><div><div>Python</div><span class="li-label">Pandas · NumPy · ML</span></div></li>
+        <li><span class="li-icon">📊</span><div><div>Power BI</div><span class="li-label">DAX · Dashboards</span></div></li>
+        <li><span class="li-icon">🗄️</span><div><div>SQL</div><span class="li-label">MySQL · PostgreSQL</span></div></li>
+        <li><span class="li-icon">🎮</span><div><div>Unity & Blender</div><span class="li-label">3D · Game Dev</span></div></li>
+      </ul>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="hero-card">
+      <h4>📈 Quick Stats</h4>
+      <ul>
+        <li><span class="li-icon">🚀</span><div><div>4 Projects</div><span class="li-label">Completed</span></div></li>
+        <li><span class="li-icon">⭐</span><div><div>6.0 CGPA</div><span class="li-label">Academic Score</span></div></li>
+        <li><span class="li-icon">🔗</span><div><a href="https://github.com/igVigneshreddy" target="_blank" style="color:var(--cyan);text-decoration:none;">igVigneshreddy</a><span class="li-label" style="display:block;">GitHub</span></div></li>
+      </ul>
+    </div>
+
+  </div>
+
 </section>
 
 <!-- ABOUT -->
@@ -670,13 +777,13 @@
   <h2 class="contact-cta reveal">Let's Build Something<br><span style="color:var(--cyan)">Together</span></h2>
   <p class="contact-sub reveal">I'm actively looking for data analyst internships and project collaborations. If you have an opportunity or just want to connect — my inbox is always open.</p>
   <div class="contact-links reveal">
-    <a href="mailto:karnavignesh@email.com" class="contact-link"><span>📧</span> Email</a>
+    <a href="/cdn-cgi/l/email-protection#d2b9b3a0bcb3a4bbb5bcb7a1ba92b7bfb3bbbefcb1bdbf" class="contact-link"><span>📧</span> Email</a>
     <a href="tel:+917736955188" class="contact-link"><span>📞</span> +91 77369 55188</a>
     <a href="https://wa.me/917736955188" target="_blank" class="contact-link"><span>💬</span> WhatsApp</a>
     <a href="https://www.linkedin.com/in/karnavignesh/" target="_blank" class="contact-link"><span>💼</span> LinkedIn</a>
     <a href="https://github.com/igVigneshreddy" target="_blank" class="contact-link"><span>🐙</span> GitHub</a>
   </div>
-  <a href="mailto:karnavignesh@email.com" class="btn-primary reveal" style="font-size:1rem; padding:1rem 2.5rem; display:inline-block;">Say Hello 👋</a>
+  <a href="/cdn-cgi/l/email-protection#543f35263a35223d333a31273c143139353d387a373b39" class="btn-primary reveal" style="font-size:1rem; padding:1rem 2.5rem; display:inline-block;">Say Hello 👋</a>
 </section>
 
 <footer>
@@ -684,7 +791,7 @@
   <span>Built with ❤️ &amp; <span style="color:var(--cyan)">data</span></span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // CUSTOM CURSOR
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -779,12 +886,4 @@ type();
 
 // SCROLL REVEAL
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), 100); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = `${(i % 4) * 0.08}s`;
-  observer.observe(el);
-});
-</script>
-</body>
-</html>
+  entries.forEach(e => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'),
